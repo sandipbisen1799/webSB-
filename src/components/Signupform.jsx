@@ -59,7 +59,7 @@ function submitHandler(event) {
   setIsLogin(true);
 }
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+    <div className=" w-fit flex  justify-center items-center min-h-screen bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
         {/* Title */}
         <h2 className="text-2xl font-bold text-center mb-6">
@@ -109,7 +109,7 @@ function submitHandler(event) {
                 value={formData.firstname}
                 required
                 onChange={changeHandler}
-                className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
+                className="w-full border rounded-lg px-3 py-2 outline-none"
               />
             </label>
 
@@ -122,7 +122,7 @@ function submitHandler(event) {
                 value={formData.lastname}
                 required
                 onChange={changeHandler}
-                className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
+                className="w-full border rounded-lg px-3 py-2 outline-none"
               />
             </label>
           </div>
@@ -136,7 +136,7 @@ function submitHandler(event) {
               value={formData.email}
               required
               onChange={changeHandler}
-              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
+              className="w-full border rounded-lg px-3 py-2 outline-none"
             />
           </label>
 
@@ -149,7 +149,7 @@ function submitHandler(event) {
               value={formData.password}
               required
               onChange={changeHandler}
-              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
+              className="w-full border rounded-lg px-3 py-2 outline-none"
             />
             <span
               onClick={() => setShowPassword((prev) => !prev)}
@@ -168,7 +168,7 @@ function submitHandler(event) {
               value={formData.confirmPassword}
               required
               onChange={changeHandler}
-              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
+              className="w-full border rounded-lg px-3 py-2 outline-none"
             />
             <span
               onClick={() => setConfirmShowPassword((prev) => !prev)}

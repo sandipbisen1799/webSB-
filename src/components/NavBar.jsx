@@ -5,8 +5,22 @@ import { ArrowBigDown } from "lucide-react";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { Api } from "../stores/ContextApi";
+import  { useEffect,  } from 'react';
+import { gsap } from 'gsap';
+
+
 
 function NavBar() {
+  
+  useEffect(() => {
+  gsap.fromTo(".animate-navbar",
+    { y: -100, opacity: 0 },
+    { y: 0, opacity: 1, duration: 2, ease: "power2.out" }
+  );
+}, []);
+
+  
+  
   const { isLogin, handlelogtoggle,handlesignuptoggle ,logoutHandler } = useContext(Api);
   const navigate = useNavigate(); // Add navigate
   const [otherFeatures, setOtherFeatures] = useState(false); // Use boolean for toggle
@@ -16,7 +30,7 @@ function NavBar() {
   };
 
   return (
-    <div className="w-full h-20 flex justify-evenly items-center text-sm relative border-b border-b-gray-500">
+    <div className="animate-navbar w-full h-20 flex justify-evenly items-center text-sm relative border-b border-b-gray-500">
       <div className="flex justify-evenly items-center gap-3.5 cursor-pointer font-medium">
         <Link className="hover:border-b border-b-gray-300 border-dotted">Websites</Link>
         <Link className="hover:border-b border-b-gray-300 border-dotted">Stores</Link>
@@ -30,7 +44,7 @@ function NavBar() {
             <ArrowBigDown size={18} color="#6a7282" className="mt-1" />
           </p>
           <div
-            className={`absolute w-34 rounded-2xl top-14 bg-white flex flex-col justify-between items-center ${
+            className={`absolute w-34 gap-2 rounded-2xl top-14 bg-white flex flex-col justify-between items-center ${
               otherFeatures ? "block text-gray-700 font-medium" : "hidden"
             }`}
           >
@@ -52,12 +66,12 @@ function NavBar() {
         {!isLogin ? (
           <>
             <Link to="/login" onClick={() => handlelogtoggle()}>
-              <button className="border bg-blue-200 border-blue-500 w-24 h-9 rotate-3 rounded-sm font-medium">
+              <button className=" cursor-pointer text-shadow-md bg-blue-300  w-23 h-10 rotate-3 rounded-sm font-medium hover:scale-105 hover:bg-blue-400 duration-100">
                 Login
               </button>
             </Link>
             <Link to="/signup" onClick={() => handlesignuptoggle()}>
-              <button className="border bg-blue-200 border-blue-500 w-24 h-9 rotate-3 rounded-sm font-medium">
+              <button className="cursor-pointer   text-shadow-md bg-blue-300  w-23 h-10 rotate-3 rounded-sm font-medium hover:scale-105 hover:bg-blue-400 duration-100">
                 Signup
               </button>
             </Link>

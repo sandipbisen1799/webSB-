@@ -39,7 +39,7 @@ function submitHandler(event) {
 }
 
   return (
-    <form
+  <div className="w-2xs" > <form
       onSubmit={submitHandler}
       className="space-y-5 w-full max-w-md mx-auto"
     >
@@ -108,7 +108,7 @@ function submitHandler(event) {
       >
         Sign In
       </button>
-    </form>
+    </form></div>
   );
 }
 

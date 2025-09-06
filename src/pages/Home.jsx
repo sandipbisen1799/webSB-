@@ -1,21 +1,61 @@
 import React from "react";
 
-
 import {
   ChevronRight,
   CircleStar,
   CalendarMinus2,
   ShoppingBag,
   Activity,
-
-
 } from "lucide-react";
 import Footer from "../components/Footer";
+import  { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+  // Create a reference to the div you want to animate
+
+
+    // Cleanup on component unmount
+ 
 
 function Home() {
+  
+
+useEffect(() => {
+  gsap.utils.toArray(".animate-card").forEach((el) => {
+    gsap.fromTo(el,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          end: "top 20%",
+          toggleActions: "play reverse play reverse",
+        },
+      }
+    );
+  }); 
+  
+
+
+
+
+
+  return () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  };
+}, []);
+
+
   return (
     <>
-    
       <div className="flex flex-col items-center">
         <div className="flex w-full h-[100vh] bg-[url(https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/masthead/blair/blair-l.webp)] bg-cover bg-center  ">
           <div className="flex flex-col w-full  items-center gap-3.5 ">
@@ -73,7 +113,7 @@ function Home() {
           </div>
         </div>
         <div className="flex items-center justify-center  p-7  ">
-          <div className="flex flex-col  gap-2 justify-center items-center">
+          <div className="animate-card flex flex-col  gap-2 justify-center items-center"  >
             <div>
               <CircleStar size={57} color="blue" />
             </div>
@@ -86,7 +126,7 @@ function Home() {
               Get Started <ChevronRight />
             </h1>
           </div>
-          <div className="flex flex-col gap-2 justify-center items-center">
+          <div className=" animate-card flex flex-col gap-2 justify-center items-center">
             <div>
               <CalendarMinus2 size={57} color="blue" />
             </div>
@@ -99,7 +139,7 @@ function Home() {
               Learn More <ChevronRight />
             </h1>
           </div>
-          <div className="flex flex-col gap-2 justify-center items-center">
+          <div className="animate-card flex flex-col gap-2 justify-center items-center">
             <div>
               <ShoppingBag size={57} color="blue" />
             </div>
@@ -112,7 +152,7 @@ function Home() {
               Learn More <ChevronRight />
             </h1>
           </div>
-          <div className="flex flex-col gap-2 justify-center items-center">
+          <div className=" animate-card flex flex-col gap-2 justify-center items-center">
             <div>
               <Activity size={57} color="blue" />
             </div>
@@ -147,7 +187,7 @@ function Home() {
           </h1>
           <div className="flex justify-evenly items-center gap-5 ">
             {" "}
-            <button className="w-35 h-9 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: transition duration-300 ease-in-out transform hover:scale-105 " >
+            <button className="w-35 h-9 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: transition duration-300 ease-in-out transform hover:scale-105 ">
               Sign Up
             </button>
             <p className="flex text-blue-500 font-normal hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105 ">
@@ -155,9 +195,8 @@ function Home() {
             </p>
           </div>
         </div>
-       
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
