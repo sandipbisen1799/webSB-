@@ -37,11 +37,31 @@ useEffect(() => {
           trigger: el,
           start: "top 80%",
           end: "top 20%",
-          toggleActions: "play reverse play reverse",
+          toggleActions: "play none none none",
         },
       }
     );
+    
+  });
+    gsap.utils.toArray(".animate-div").forEach((el) => {
+    gsap.fromTo(el,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          end: "top 20%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+    
   }); 
+   
   
 
 
@@ -51,7 +71,8 @@ useEffect(() => {
   return () => {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   };
-}, []);
+},
+ []);
 
 
   return (
@@ -73,7 +94,7 @@ useEffect(() => {
             </button>
           </div>
         </div>
-        <div className="flex flex-col justify-evenly gap-6 items-center w-2xl mt-6.5 ">
+        <div className="animate-div flex flex-col justify-evenly gap-6 items-center w-2xl mt-6.5 ">
           {" "}
           <div className="flex flex-col w-full  items-center  ">
             {" "}
@@ -101,7 +122,7 @@ useEffect(() => {
             </p>
           </div>
         </div>
-        <div className=" mt-6 w-full h-100 bg-[url(https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/themes/design-xl.webp)] bg-cover bg-center"></div>
+        <div className=" animate-div mt-6 w-full h-100 bg-[url(https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/themes/design-xl.webp)] bg-cover bg-center"></div>
         <div>
           <div className="flex flex-col justify-evenly items-center w-2xl mt-6.5">
             <h1 className=" text-gray-800 font-medium text-2xl">
@@ -194,6 +215,12 @@ useEffect(() => {
               Learn More <ChevronRight />{" "}
             </p>
           </div>
+        </div>
+        <div className="w-full h-60 bg-[#F5F6F7] flex flex-col justify-center items-center gap-5 mt-6">
+          <h1 className="text-gray-800 font-medium text-xl">Grow Your Business AnyTime AnyWhere</h1>
+          <button className="w-56 h-10 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
+            Get Started
+          </button>
         </div>
       </div>
       <Footer />

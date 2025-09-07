@@ -32,7 +32,7 @@ function NavBar() {
   return (
     <div className="animate-navbar w-full h-20 flex justify-evenly items-center text-sm relative border-b border-b-gray-500">
       <div className="flex justify-evenly items-center gap-3.5 cursor-pointer font-medium">
-        <Link className="hover:border-b border-b-gray-300 border-dotted">Websites</Link>
+        <Link className="hover:border-b border-b-gray-300 border-dotted" to='/home'>Home</Link>
         <Link className="hover:border-b border-b-gray-300 border-dotted">Stores</Link>
         <Link className="hover:border-b border-b-gray-300 border-dotted">Price</Link>
         <div className="cursor-pointer flex flex-col justify-center items-center">

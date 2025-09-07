@@ -6,7 +6,7 @@ import {  useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { Api } from "../stores/ContextApi";
-
+import api from '../utills/api.js'
 function Signupform() {
 const {setIsLogin}=useContext(Api);
   const navigate = useNavigate();
@@ -32,8 +32,10 @@ const {setIsLogin}=useContext(Api);
   }
 
 // Signupform.js (partial)
-function submitHandler(event) {
-  event.preventDefault();
+const  submitHandler= async(event)=> {
+try {
+  
+    event.preventDefault();
 
   // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,10 +55,20 @@ function submitHandler(event) {
     toast.error("Passwords do not match!");
     return;
   }
+const res = await api.post("/user/signup", formData);
+    
+console.log(res);
 
-  toast.success("User registered successfully!");
+     
+    toast.success("User registered successfully!");
   navigate("/");
   setIsLogin(true);
+
+ 
+} catch (error) {
+   console.error(error.response?.data || error.message);
+        toast.error(error.response?.data?.message || "signup failed!");
+}
 }
   return (
     <div className=" w-fit flex  justify-center items-center min-h-screen bg-gray-100 px-4">
@@ -71,7 +83,7 @@ function submitHandler(event) {
           <button
             type="button"
             onClick={() =>
-              setFormData((prev) => ({ ...prev, accountType: "student" }))
+              setFormData((prev) => ({ ...prev, accountType: "user" }))
             }
             className={`flex-1 py-2 text-center font-medium ${
               formData.accountType === "student"
@@ -79,13 +91,13 @@ function submitHandler(event) {
                 : "bg-gray-100 text-gray-600"
             }`}
           >
-            Student
+            User
           </button>
 
           <button
             type="button"
             onClick={() =>
-              setFormData((prev) => ({ ...prev, accountType: "instructor" }))
+              setFormData((prev) => ({ ...prev, accountType: "admin" }))
             }
             className={`flex-1 py-2 text-center font-medium ${
               formData.accountType === "instructor"
