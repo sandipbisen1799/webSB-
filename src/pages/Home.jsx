@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 import  { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import NavBar from "../components/NavBar";
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,6 +77,7 @@ useEffect(() => {
 
   return (
     <>
+         <NavBar />
       <div className="flex flex-col items-center">
         <div className="flex w-full h-[100vh] bg-[url(https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/masthead/blair/blair-l.webp)] bg-cover bg-center  ">
           <div className="flex flex-col w-full  items-center gap-3.5 ">
@@ -124,7 +125,7 @@ useEffect(() => {
         </div>
         <div className=" animate-div mt-6 w-full h-100 bg-[url(https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/themes/design-xl.webp)] bg-cover bg-center"></div>
         <div>
-          <div className="flex flex-col justify-evenly items-center w-2xl mt-6.5">
+          <div className="  animate-div flex flex-col justify-evenly items-center w-2xl mt-6.5">
             <h1 className=" text-gray-800 font-medium text-2xl">
               Succeed with the right website
             </h1>
@@ -192,21 +193,21 @@ useEffect(() => {
           {" "}
           <div className="flex flex-col w-full  items-center  ">
             {" "}
-            <h1 className=" text-gray-800 font-medium text-2xl">
+            <h1 className=" animate-div text-gray-800 font-medium text-2xl">
               Freedom to sell anytime,
             </h1>
-            <h1 className=" text-gray-800 font-medium text-2xl">
+            <h1 className=" animate-div text-gray-800 font-medium text-2xl">
               {" "}
               anywhere with webSB
             </h1>
           </div>
-          <h1 className="text-gray-500 font-normal text-2sm text-center ">
-            Weebly is now a part of the Square product suite. This means never
+          <h1 className="animate-div text-gray-500 font-normal text-2sm text-center ">
+            Weebsb is the website which design to enhance your website This means never
             missing a sale and letting your customers pay how they want to.
             Whether it's at a pop-up shop or your own online store, Square takes
             care of your payments for you, so you can focus on your business.
           </h1>
-          <div className="flex justify-evenly items-center gap-5 ">
+          <div className="  animate-div flex justify-evenly items-center gap-5 ">
             {" "}
             <button className="w-35 h-9 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: transition duration-300 ease-in-out transform hover:scale-105 ">
               Sign Up
@@ -216,14 +217,10 @@ useEffect(() => {
             </p>
           </div>
         </div>
-        <div className="w-full h-60 bg-[#F5F6F7] flex flex-col justify-center items-center gap-5 mt-6">
-          <h1 className="text-gray-800 font-medium text-xl">Grow Your Business AnyTime AnyWhere</h1>
-          <button className="w-56 h-10 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
-            Get Started
-          </button>
-        </div>
+
       </div>
-      <Footer />
+      <Footer title={"Grow Your Business AnyTime AnyWhere"} title1={'Get Started'} />
+
     </>
   );
 }

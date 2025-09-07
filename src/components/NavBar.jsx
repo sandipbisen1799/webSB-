@@ -34,7 +34,7 @@ function NavBar() {
       <div className="flex justify-evenly items-center gap-3.5 cursor-pointer font-medium">
         <Link className="hover:border-b border-b-gray-300 border-dotted" to='/home'>Home</Link>
         <Link className="hover:border-b border-b-gray-300 border-dotted">Stores</Link>
-        <Link className="hover:border-b border-b-gray-300 border-dotted">Price</Link>
+        <Link to='/pricing' className="hover:border-b border-b-gray-300 border-dotted">Pricing</Link>
         <div className="cursor-pointer flex flex-col justify-center items-center">
           <p
             onClick={handleotherFeatures}

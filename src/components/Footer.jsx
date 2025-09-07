@@ -4,9 +4,15 @@ import {   Facebook,
   Instagram,
   Twitter,
 ChevronRight } from 'lucide-react'
-function Footer() {
+function Footer({title, title1}) {
   return (
     <>
+            <div className="w-full h-60 bg-[#F5F6F7] flex flex-col justify-center items-center gap-5 mt-6">
+              <h1 className="text-gray-800 font-medium text-xl">{title}</h1>
+              <button className="w-56 h-10 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
+                {title1}
+              </button>
+            </div>
      
         <div className="w-full bg-[#F5F6F7] flex flex-col justify-center items-center font-semibold text-sm  gap-7 ">
           <div className="w-full flex items-start justify-evenly gap-7">

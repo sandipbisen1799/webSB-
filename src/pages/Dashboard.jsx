@@ -1,10 +1,15 @@
 import React from 'react'
 import { Api } from '../stores/ContextApi'
+import NavBar from '../components/NavBar'
 
 function Dashboard() {
 
   return (
-    <div>Dashboard</div>
+    <>
+    <NavBar/>
+       <div>Dashboard</div>
+       </>
+ 
   )
 }
 

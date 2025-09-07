@@ -6,11 +6,13 @@ import PrivateRoute from "../components/PrivateRoute.jsx";
 import { ToastContainer } from "react-toastify";
 import { Route,Routes } from "react-router-dom";
 import Signup from "../pages/Signup.jsx";
+import Pricing from "../pages/Pricing.jsx";
+import Nopage from "../pages/Nopage.jsx";
 function AppContent() {
-  
+
   return (
     <>
-      <NavBar />
+ 
       <ToastContainer
         className="custom-toast"
         position="bottom-right"
@@ -28,6 +30,7 @@ function AppContent() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
          <Route path="/signup" element={<Signup />} />
+         <Route path="/pricing" element={<Pricing/>}/>
         <Route
           path="/dashboard"
           element={
@@ -36,7 +39,9 @@ function AppContent() {
             </PrivateRoute>
           }
         />
+        <Route path='*' element={<Nopage/>}/>
       </Routes>
+      
     </>
   );
 }
