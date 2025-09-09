@@ -38,12 +38,12 @@ const {signUpLoginToggle,setSignUpLoginToggle}=useContext(Api);
     <div className="w-fit flex flex-col justify-center items-center " > 
        <div className="w-full flex flex-col items-center   md:w-1/2  max-w-md">
         {/* Title */}
-       <h1 className="text-3xl font-bold text-center text-gray-900 mb-4">
+       <h1 className="text-3xl  font-bold text-center text-gray-900 mb-4">
   {signUpLoginToggle === true ? "User Sign Up" : "Welcome Back"}
 </h1>
         <p className="text-gray-600  text-center ">
           <span>{signUpLoginToggle==true?'build skill for today tomarrow and beyond':'build skill for today'} </span>
-          <span className="font-semibold text-gray-800 text-center">rgkdskdbm</span>
+          <span className="font-semibold text-gray-800 text-center">we are here to help you</span>
         </p></div>
         <div >
 { signUpLoginToggle=== false ? (

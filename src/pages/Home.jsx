@@ -134,7 +134,7 @@ useEffect(() => {
             </h1>
           </div>
         </div>
-        <div className="flex items-center justify-center  p-7  ">
+        <div className="flex items-center justify-center   p-7  ">
           <div className="animate-card flex flex-col  gap-2 justify-center items-center"  >
             <div>
               <CircleStar size={57} color="blue" />

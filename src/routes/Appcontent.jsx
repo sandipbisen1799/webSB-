@@ -8,6 +8,7 @@ import { Route,Routes } from "react-router-dom";
 import Signup from "../pages/Signup.jsx";
 import Pricing from "../pages/Pricing.jsx";
 import Nopage from "../pages/Nopage.jsx";
+import Contactus from '../pages/Contactus.jsx'
 function AppContent() {
 
   return (
@@ -31,6 +32,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
          <Route path="/signup" element={<Signup />} />
          <Route path="/pricing" element={<Pricing/>}/>
+         <Route path= '/contact-us' element ={<Contactus/>}/>
         <Route
           path="/dashboard"
           element={

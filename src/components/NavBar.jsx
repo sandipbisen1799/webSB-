@@ -32,8 +32,8 @@ function NavBar() {
   return (
     <div className="animate-navbar w-full h-20 flex justify-evenly items-center text-sm relative border-b border-b-gray-500">
       <div className="flex justify-evenly items-center gap-3.5 cursor-pointer font-medium">
-        <Link className="hover:border-b border-b-gray-300 border-dotted" to='/home'>Home</Link>
-        <Link className="hover:border-b border-b-gray-300 border-dotted">Stores</Link>
+        <Link className="hover:border-b border-b-gray-300 border-dotted" to='/'>Home</Link>
+       
         <Link to='/pricing' className="hover:border-b border-b-gray-300 border-dotted">Pricing</Link>
         <div className="cursor-pointer flex flex-col justify-center items-center">
           <p
@@ -57,6 +57,7 @@ function NavBar() {
             <Link to="/help">Help</Link>
           </div>
         </div>
+         <Link className="hover:border-b border-b-gray-300 border-dotted" to='/contact-us'>Contact Us</Link>
       </div>
       <div className="flex flex-col items-center justify-center">
         <Link className="text-xl font-medium hover:border-b border-b-gray-300 border-dotted">WebSB</Link>
