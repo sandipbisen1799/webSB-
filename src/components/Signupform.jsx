@@ -55,7 +55,7 @@ try {
     toast.error("Passwords do not match!");
     return;
   }
-const res = await api.post("/user/signup", formData);
+const res = await api.post("user/signup", formData);
     
 console.log(res);
 

@@ -9,6 +9,7 @@ import Signup from "../pages/Signup.jsx";
 import Pricing from "../pages/Pricing.jsx";
 import Nopage from "../pages/Nopage.jsx";
 import Contactus from '../pages/Contactus.jsx'
+import {GoogleOAuthProvider} from '@react-oauth/google'
 function AppContent() {
 
   return (
@@ -27,6 +28,7 @@ function AppContent() {
         pauseOnHover
         theme="light"
       />
+        <GoogleOAuthProvider clientId='658676857394-0lbm3c50hf184hu31a75urgtil8hifrt.apps.googleusercontent.com' >
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -43,6 +45,7 @@ function AppContent() {
         />
         <Route path='*' element={<Nopage/>}/>
       </Routes>
+      </GoogleOAuthProvider>
       
     </>
   );

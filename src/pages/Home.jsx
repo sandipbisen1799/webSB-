@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import {
   ChevronRight,
   CircleStar,
@@ -8,219 +7,173 @@ import {
   Activity,
 } from "lucide-react";
 import Footer from "../components/Footer";
-import  { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import NavBar from "../components/NavBar";
-// Register ScrollTrigger plugin
+
 gsap.registerPlugin(ScrollTrigger);
 
-  // Create a reference to the div you want to animate
-
-
-    // Cleanup on component unmount
- 
-
 function Home() {
-  
+  useEffect(() => {
+    gsap.utils.toArray(".animate-card").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            end: "top 20%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
 
-useEffect(() => {
-  gsap.utils.toArray(".animate-card").forEach((el) => {
-    gsap.fromTo(el,
-      { y: 100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 80%",
-          end: "top 20%",
-          toggleActions: "play none none none",
-        },
-      }
-    );
-    
-  });
     gsap.utils.toArray(".animate-div").forEach((el) => {
-    gsap.fromTo(el,
-      { y: 100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 80%",
-          end: "top 20%",
-          toggleActions: "play none none none",
-        },
-      }
-    );
-    
-  }); 
-   
-  
+      gsap.fromTo(
+        el,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            end: "top 20%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
 
-
-
-
-
-  return () => {
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  };
-},
- []);
-
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <>
-         <NavBar />
+      <NavBar />
+
+      {/* Hero Section */}
       <div className="flex flex-col items-center">
-        <div className="flex w-full h-[100vh] bg-[url(https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/masthead/blair/blair-l.webp)] bg-cover bg-center  ">
-          <div className="flex flex-col w-full  items-center gap-3.5 ">
-            {" "}
-            <div className="h-32 w-full  flex flex-col justify-between items-center mt-11 ">
-              <h1 className=" text-gray-800 font-medium text-5xl ">
-                Get started with our powerful free{" "}
-              </h1>
-              <h1 className=" text-gray-800 font-medium text-5xl">
-                website builder.
-              </h1>
-            </div>
-            <button className="w-45 h-10 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
+        <div className="flex w-full min-h-screen bg-[url('https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/masthead/blair/blair-l.webp')] bg-cover bg-center sm:bg-top">
+          <div className="flex flex-col w-full items-center justify-center gap-6 px-4 text-center">
+            <h1 className="text-gray-800 font-medium text-2xl sm:text-3xl md:text-5xl">
+              Get started with our powerful free
+            </h1>
+            <h1 className="text-gray-800 font-medium text-3xl sm:text-4xl md:text-5xl">
+              website builder.
+            </h1>
+            <button className="px-6 py-2 rounded-md text-white font-medium bg-blue-500 hover:bg-blue-600 transition duration-300 transform hover:scale-105">
               Create Your Website
             </button>
           </div>
         </div>
-        <div className="animate-div flex flex-col justify-evenly gap-6 items-center w-2xl mt-6.5 ">
-          {" "}
-          <div className="flex flex-col w-full  items-center  ">
-            {" "}
-            <h1 className=" text-gray-800 font-medium text-2xl">
-              Build a free website that{" "}
-            </h1>
-            <h1 className=" text-gray-800 font-medium text-2xl">
-              {" "}
-              grows with your business.
-            </h1>
-          </div>
-          <h1 className="text-gray-500 font-normal text-2sm text-center ">
-            Get access to customizable webpage designs and useful tools to build
-            your website and grow your ideal business. Easily build a free
-            website to help you get discovered and grow your customer base in
-            style. Start today with our powerful free website builder.
+
+        {/* Intro Section */}
+        <div className="animate-div flex flex-col gap-6 items-center max-w-4xl mt-10 px-4 text-center">
+          <h1 className="text-gray-800 font-medium text-2xl sm:text-3xl">
+            Build a free website that grows with your business.
           </h1>
-          <div className="flex justify-evenly items-center gap-5 ">
-            {" "}
-            <button className="w-35 h-9 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
+          <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+            Get access to customizable webpage designs and useful tools to build
+            your website and grow your ideal business. Start today with our
+            powerful free website builder.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
+            <button className="px-6 py-2 rounded-md text-white font-medium bg-blue-500 hover:bg-blue-600 transition duration-300 transform hover:scale-105">
               Get Started
             </button>
-            <p className="flex text-blue-500 font-normal hover: shadow-2xl hover: transition duration-300 ease transform hover:scale-105">
-              More Designs <ChevronRight />{" "}
+            <p className="flex items-center text-blue-500 font-medium cursor-pointer hover:underline">
+              More Designs <ChevronRight />
             </p>
           </div>
         </div>
-        <div className=" animate-div mt-6 w-full h-100 bg-[url(https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/themes/design-xl.webp)] bg-cover bg-center"></div>
-        <div>
-          <div className="  animate-div flex flex-col justify-evenly items-center w-2xl mt-6.5">
-            <h1 className=" text-gray-800 font-medium text-2xl">
-              Succeed with the right website
-            </h1>
-            <h1 className=" text-gray-800 font-medium text-2xl">
-              builder, from start to growth.
-            </h1>
-          </div>
-        </div>
-        <div className="flex items-center justify-center   p-7  ">
-          <div className="animate-card flex flex-col  gap-2 justify-center items-center"  >
-            <div>
-              <CircleStar size={57} color="blue" />
-            </div>
-            <h1>Get Going</h1>
-            <h1 className="text-gray-500 font-normal text-2sm text-center ">
-              Get step-by-step guidance on how to build and launch a website
-              with expert starter guides and planning tools.
-            </h1>
-            <h1 className="flex text-blue-500 font-normal hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
-              Get Started <ChevronRight />
-            </h1>
-          </div>
-          <div className=" animate-card flex flex-col gap-2 justify-center items-center">
-            <div>
-              <CalendarMinus2 size={57} color="blue" />
-            </div>
-            <h1>Get Online</h1>
-            <h1 className="text-gray-500 font-normal text-2sm text-center ">
-              Get discovered with a professional website. Easily customize with
-              our free website builder.
-            </h1>
-            <h1 className="flex text-blue-500 font-normal hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
-              Learn More <ChevronRight />
-            </h1>
-          </div>
-          <div className="animate-card flex flex-col gap-2 justify-center items-center">
-            <div>
-              <ShoppingBag size={57} color="blue" />
-            </div>
-            <h1>Get Selling</h1>
-            <h1 className="text-gray-500 font-normal text-2sm text-center ">
-              All-in-one powerful eCommerce tools to simplify order management,
-              shipping, and payments.
-            </h1>
-            <h1 className="flex text-blue-500 font-normal hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
-              Learn More <ChevronRight />
-            </h1>
-          </div>
-          <div className=" animate-card flex flex-col gap-2 justify-center items-center">
-            <div>
-              <Activity size={57} color="blue" />
-            </div>
-            <h1>Get Growing</h1>
-            <h1 className="text-gray-500 font-normal text-2sm text-center ">
-              Find new customers with integrated marketing tools, from Facebook
-              ads to automated email campaigns.
-            </h1>
-            <h1 className="flex text-blue-500 font-normal hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105">
-              Learn More
-              <ChevronRight />
-            </h1>
-          </div>
-        </div>
-        <div className="flex flex-col justify-evenly gap-6 items-center w-2xl mt-6.5 ">
-          {" "}
-          <div className="flex flex-col w-full  items-center  ">
-            {" "}
-            <h1 className=" animate-div text-gray-800 font-medium text-2xl">
-              Freedom to sell anytime,
-            </h1>
-            <h1 className=" animate-div text-gray-800 font-medium text-2xl">
-              {" "}
-              anywhere with webSB
-            </h1>
-          </div>
-          <h1 className="animate-div text-gray-500 font-normal text-2sm text-center ">
-            Weebsb is the website which design to enhance your website This means never
-            missing a sale and letting your customers pay how they want to.
-            Whether it's at a pop-up shop or your own online store, Square takes
-            care of your payments for you, so you can focus on your business.
+
+        {/* Image Banner */}
+        <div className="animate-div mt-10 w-full h-64 sm:h-96 bg-[url('https://cdn2.editmysite.com/images/landing-pages/global/home-com-forward/themes/design-xl.webp')] bg-cover bg-center sm:bg-top"></div>
+
+        {/* Section Title */}
+        <div className="animate-div flex flex-col items-center gap-2 mt-10 px-4 text-center">
+          <h1 className="text-gray-800 font-medium text-2xl sm:text-3xl">
+            Succeed with the right website builder
           </h1>
-          <div className="  animate-div flex justify-evenly items-center gap-5 ">
-            {" "}
-            <button className="w-35 h-9 rounded-sm text-gray-50 font-medium  border-blue-100 bg-blue-400 hover: transition duration-300 ease-in-out transform hover:scale-105 ">
+          <h1 className="text-gray-800 font-medium text-2xl sm:text-3xl">
+            from start to growth.
+          </h1>
+        </div>
+
+        {/* Feature Cards */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 p-7 w-full max-w-6xl">
+          {[
+            {
+              icon: <CircleStar size={50} color="blue" />,
+              title: "Get Going",
+              text: "Step-by-step guidance on how to build and launch a website with expert starter guides.",
+            },
+            {
+              icon: <CalendarMinus2 size={50} color="blue" />,
+              title: "Get Online",
+              text: "Get discovered with a professional website. Easily customize with our free builder.",
+            },
+            {
+              icon: <ShoppingBag size={50} color="blue" />,
+              title: "Get Selling",
+              text: "All-in-one eCommerce tools to simplify order management, shipping, and payments.",
+            },
+            {
+              icon: <Activity size={50} color="blue" />,
+              title: "Get Growing",
+              text: "Find new customers with integrated marketing tools, from ads to email campaigns.",
+            },
+          ].map((card, i) => (
+            <div
+              key={i}
+              className="animate-card flex flex-col gap-3 items-center text-center bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition"
+            >
+              {card.icon}
+              <h2 className="font-semibold text-lg">{card.title}</h2>
+              <p className="text-gray-500 text-sm">{card.text}</p>
+              <span className="flex items-center text-blue-500 font-medium cursor-pointer hover:underline">
+                Learn More <ChevronRight />
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Selling Section */}
+        <div className="flex flex-col gap-6 items-center max-w-4xl mt-10 px-4 text-center">
+          <h1 className="animate-div text-gray-800 font-medium text-2xl sm:text-3xl">
+            Freedom to sell anytime, anywhere with webSB
+          </h1>
+          <p className="animate-div text-gray-500 text-sm sm:text-base leading-relaxed">
+            WebSB is designed to enhance your business. Never miss a sale and
+            let customers pay how they want — from pop-up shops to your online
+            store. Focus on growth while WebSB handles payments.
+          </p>
+          <div className="animate-div flex flex-col sm:flex-row justify-center items-center gap-5">
+            <button className="px-6 py-2 rounded-md text-white font-medium bg-blue-500 hover:bg-blue-600 transition duration-300 transform hover:scale-105">
               Sign Up
             </button>
-            <p className="flex text-blue-500 font-normal hover: shadow-2xl hover: transition duration-300 ease-in-out transform hover:scale-105 ">
-              Learn More <ChevronRight />{" "}
+            <p className="flex items-center text-blue-500 font-medium cursor-pointer hover:underline">
+              Learn More <ChevronRight />
             </p>
           </div>
         </div>
-
       </div>
-      <Footer title={"Grow Your Business AnyTime AnyWhere"} title1={'Get Started'} />
 
+      <Footer
+        title={"Grow Your Business Anytime, Anywhere"}
+        title1={"Get Started"}
+      />
     </>
   );
 }

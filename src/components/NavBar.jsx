@@ -1,103 +1,221 @@
 // NavBar.js
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Add useNavigate
-import { ArrowBigDown } from "lucide-react";
+import React, { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowBigDown, Menu, X } from "lucide-react";
 import { toast } from "react-toastify";
-import { useContext } from "react";
 import { Api } from "../stores/ContextApi";
-import  { useEffect,  } from 'react';
-import { gsap } from 'gsap';
-
-
+import { gsap } from "gsap";
 
 function NavBar() {
-  
+  const { isLogin, handlelogtoggle, handlesignuptoggle, logoutHandler } =
+    useContext(Api);
+  const navigate = useNavigate();
+  const [otherFeatures, setOtherFeatures] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleOtherFeatures = () => setOtherFeatures((prev) => !prev);
+
   useEffect(() => {
-  gsap.fromTo(".animate-navbar",
-    { y: -100, opacity: 0 },
-    { y: 0, opacity: 1, duration: 2, ease: "power2.out" }
-  );
-}, []);
-
-  
-  
-  const { isLogin, handlelogtoggle,handlesignuptoggle ,logoutHandler } = useContext(Api);
-  const navigate = useNavigate(); // Add navigate
-  const [otherFeatures, setOtherFeatures] = useState(false); // Use boolean for toggle
-
-  const handleotherFeatures = () => {
-    setOtherFeatures((prev) => !prev);
-  };
+    gsap.fromTo(
+      ".animate-navbar",
+      { y: -100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.5, ease: "power2.out" }
+    );
+  }, []);
 
   return (
-    <div className="animate-navbar w-full h-20 flex justify-evenly items-center text-sm relative border-b border-b-gray-500">
-      <div className="flex justify-evenly items-center gap-3.5 cursor-pointer font-medium">
-        <Link className="hover:border-b border-b-gray-300 border-dotted" to='/'>Home</Link>
-       
-        <Link to='/pricing' className="hover:border-b border-b-gray-300 border-dotted">Pricing</Link>
-        <div className="cursor-pointer flex flex-col justify-center items-center">
-          <p
-            onClick={handleotherFeatures}
-            className="flex justify-center items-center hover:border-b border-b-gray-300 border-dotted"
-          >
-            Other Feature
-            <ArrowBigDown size={18} color="#6a7282" className="mt-1" />
-          </p>
-          <div
-            className={`absolute w-34 gap-2 rounded-2xl top-14 bg-white flex flex-col justify-between items-center ${
-              otherFeatures ? "block text-gray-700 font-medium" : "hidden"
-            }`}
-          >
-            <Link to="/guide">Guide</Link>
-            <Link to="/themes">Themes</Link>
-            <Link to="/features">Features</Link>
-            <Link to="/blog">Blog</Link>
-            <Link to="/app-center">App Center</Link>
-            <Link to="/seo-guide">SEO Guide</Link>
-            <Link to="/help">Help</Link>
+    <nav className="animate-navbar w-full  border-b border-gray-300 bg-white shadow-sm  fixed top-0 left-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="flex justify-between items-center h-16">
+          {/* Left Section */}
+          <div className="flex items-center gap-6">
+            {/* Mobile Hamburger */}
+            <button
+              className="md:hidden text-gray-700 focus:outline-none"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+
+            {/* Brand */}
+            <div className="flex flex-col items-start">
+              <Link to="/" className="text-lg font-semibold">
+                WebSB
+              </Link>
+              <p className="text-xs text-gray-500">e-commerce by Sandip</p>
+            </div>
+          </div>
+
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-6 font-medium">
+            <Link className="hover:text-blue-500" to="/">
+              Home
+            </Link>
+            <Link className="hover:text-blue-500" to="/pricing">
+              Pricing
+            </Link>
+
+            {/* Dropdown */}
+            <div className="relative">
+              <button
+                onClick={handleOtherFeatures}
+                className="flex items-center gap-1 hover:text-blue-500"
+              >
+                Other Feature <ArrowBigDown size={16} />
+              </button>
+              {otherFeatures && (
+                <div className="absolute left-0 mt-2 w-40 rounded-md bg-white shadow-lg flex flex-col p-2 text-sm">
+                  <Link to="/guide" className="hover:text-blue-600">
+                    Guide
+                  </Link>
+                  <Link to="/themes" className="hover:text-blue-600">
+                    Themes
+                  </Link>
+                  <Link to="/features" className="hover:text-blue-600">
+                    Features
+                  </Link>
+                  <Link to="/blog" className="hover:text-blue-600">
+                    Blog
+                  </Link>
+                  <Link to="/app-center" className="hover:text-blue-600">
+                    App Center
+                  </Link>
+                  <Link to="/seo-guide" className="hover:text-blue-600">
+                    SEO Guide
+                  </Link>
+                  <Link to="/help" className="hover:text-blue-600">
+                    Help
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link className="hover:text-blue-500" to="/contact-us">
+              Contact Us
+            </Link>
+          </div>
+
+          {/* Right Section (Auth Buttons) */}
+          <div className="hidden md:flex items-center gap-3">
+            {!isLogin ? (
+              <>
+                <Link to="/login" onClick={handlelogtoggle}>
+                  <button className="px-4 py-2 rounded-md bg-blue-400 text-white font-medium hover:bg-blue-500 transition">
+                    Login
+                  </button>
+                </Link>
+                <Link to="/signup" onClick={handlesignuptoggle}>
+                  <button className="px-4 py-2 rounded-md bg-blue-400 text-white font-medium hover:bg-blue-500 transition">
+                    Signup
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    logoutHandler();
+                    toast.success("Logout successful");
+                    navigate("/login");
+                  }}
+                  className="px-4 py-2 rounded-md border border-gray-400 font-medium hover:bg-gray-100 transition"
+                >
+                  Logout
+                </button>
+                <Link to="/dashboard">
+                  <button className="px-4 py-2 rounded-md border border-gray-400 font-medium hover:bg-gray-100 transition">
+                    Dashboard
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
-         <Link className="hover:border-b border-b-gray-300 border-dotted" to='/contact-us'>Contact Us</Link>
       </div>
-      <div className="flex flex-col items-center justify-center">
-        <Link className="text-xl font-medium hover:border-b border-b-gray-300 border-dotted">WebSB</Link>
-        <p className="text-sm font-light">e-commerce by Sandip</p>
-      </div>
-      <div className="flex justify-center items-center gap-4">
-        {!isLogin ? (
-          <>
-            <Link to="/login" onClick={() => handlelogtoggle()}>
-              <button className=" cursor-pointer text-shadow-md bg-blue-300  w-23 h-10 rotate-3 rounded-sm font-medium hover:scale-105 hover:bg-blue-400 duration-100">
-                Login
+
+      {/* Mobile Dropdown Menu */}
+      {mobileOpen && (
+        <div className="md:hidden bg-white border-t border-gray-300 shadow-lg p-4 flex flex-col gap-3 font-medium">
+          <Link to="/" onClick={() => setMobileOpen(false)}>
+            Home
+          </Link>
+          <Link to="/pricing" onClick={() => setMobileOpen(false)}>
+            Pricing
+          </Link>
+          <button
+            onClick={() => {
+              handleOtherFeatures();
+            }}
+            className="flex items-center gap-1"
+          >
+            Other Feature <ArrowBigDown size={16} />
+          </button>
+          {otherFeatures && (
+            <div className="flex flex-col gap-2 pl-4 text-sm">
+              <Link to="/guide" onClick={() => setMobileOpen(false)}>
+                Guide
+              </Link>
+              <Link to="/themes" onClick={() => setMobileOpen(false)}>
+                Themes
+              </Link>
+              <Link to="/features" onClick={() => setMobileOpen(false)}>
+                Features
+              </Link>
+              <Link to="/blog" onClick={() => setMobileOpen(false)}>
+                Blog
+              </Link>
+              <Link to="/app-center" onClick={() => setMobileOpen(false)}>
+                App Center
+              </Link>
+              <Link to="/seo-guide" onClick={() => setMobileOpen(false)}>
+                SEO Guide
+              </Link>
+              <Link to="/help" onClick={() => setMobileOpen(false)}>
+                Help
+              </Link>
+            </div>
+          )}
+          <Link to="/contact-us" onClick={() => setMobileOpen(false)}>
+            Contact Us
+          </Link>
+
+          {/* Mobile Auth */}
+          {!isLogin ? (
+            <>
+              <Link to="/login" onClick={() => setMobileOpen(false)}>
+                <button className="px-4 py-2 w-full rounded-md bg-blue-400 text-white font-medium hover:bg-blue-500 transition">
+                  Login
+                </button>
+              </Link>
+              <Link to="/signup" onClick={() => setMobileOpen(false)}>
+                <button className="px-4 py-2 w-full rounded-md bg-blue-400 text-white font-medium hover:bg-blue-500 transition">
+                  Signup
+                </button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => {
+                  logoutHandler();
+                  toast.success("Logout successful");
+                  navigate("/login");
+                  setMobileOpen(false);
+                }}
+                className="px-4 py-2 w-full rounded-md border border-gray-400 font-medium hover:bg-gray-100 transition"
+              >
+                Logout
               </button>
-            </Link>
-            <Link to="/signup" onClick={() => handlesignuptoggle()}>
-              <button className="cursor-pointer   text-shadow-md bg-blue-300  w-23 h-10 rotate-3 rounded-sm font-medium hover:scale-105 hover:bg-blue-400 duration-100">
-                Signup
-              </button>
-            </Link>
-          </>
-        ) : (
-          <>
-            <button
-              onClick={() => {
-                logoutHandler();
-                toast.success("Logout successful");
-                navigate("/login"); // Redirect to login
-              }}
-              className="border w-24 h-9 rotate-3 rounded-sm font-medium hover:bg-blue-300 shadow-2xl transition duration-300 ease-in-out transform hover:scale-105"
-            >
-              Logout
-            </button>
-            <Link to="/dashboard">
-              <button className="border w-24 h-9 rotate-3 rounded-sm font-medium hover:bg-blue-300 shadow-2xl transition duration-300 ease-in-out transform hover:scale-105">
-                Dashboard
-              </button>
-            </Link>
-          </>
-        )}
-      </div>
-    </div>
+              <Link to="/dashboard" onClick={() => setMobileOpen(false)}>
+                <button className="px-4 py-2 w-full rounded-md border border-gray-400 font-medium hover:bg-gray-100 transition">
+                  Dashboard
+                </button>
+              </Link>
+            </>
+          )}
+        </div>
+      )}
+    </nav>
   );
 }
 

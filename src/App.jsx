@@ -6,11 +6,13 @@ import AppContent from "./routes/Appcontent";
 
 function App() {
   return (
-    <ApiProvider>
+    
       <BrowserRouter>
+      <ApiProvider>
         <AppContent />
+          </ApiProvider>
       </BrowserRouter>
-    </ApiProvider>
+  
   );
 }
 

@@ -1,36 +1,96 @@
-import React from 'react'
-import Card from '../components/Card'
-import data from '../components/data'
-import Footer from '../components/Footer'
-import NavBar from '../components/NavBar'
+import React, { useContext } from "react";
+import Card from "../components/Card";
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
+import { Api } from "../stores/ContextApi";
+import { motion } from "framer-motion";
 
 
 function Pricing() {
-  return (<>
-  <NavBar/>
-  <div className='w-ful flex flex-col justify-center items-center '>
+  const { data } = useContext(Api);
 
-    <div className='mt-10 font-medium text-sm ' ><p>How Much Does It Cost</p></div>
-    <div className='w-1/2  flex flex-col mt-1.5 justify-center items-center ' >
-     <h1 className='mt-10 font-medium text-4xl '>So What Does It Cost </h1>
-     <h1 className='mt-10 font-medium text-lg text-center     '>Show we are solving you the hassle of tens of hundreds of Thousands of Doller  and Doing it all fast, but don't worry, we are not overchrge you</h1>
-    </div>
-    <div className='flex w-full h-full relative  justify-between items-center gap-2 mt-14 pl-7 pr-7 '> 
-      <div className='flex flex-col justify-center items-center gap-1 text-center'>
-        <h1 className='w-24 font-medium text-2xl'>Not sure what bundle is best for you </h1>
-        <h1 className='mt-3 font-medium text-sm  w-36'>quit the guess work  click here to download our guide </h1>
-        <button className='text-center  bg-[#010101] text-gray-100 p-2 w-full rounded-xl '>websb guide</button>
-        <h1 className='mt-3 font-medium text-sm  '>monthly order limit </h1>
-        <h1 className='font-light text-sm '>unlimited affilited</h1>
+  return (
+    <>
+      <NavBar />
+
+      <div className="w-full flex flex-col justify-center items-center px-6 sm:px-10 lg:px-20 py-10">
+        
+        {/* Header Section */}
+        <div className="text-center mt-6">
+          <p className="font-medium text-sm text-gray-600">
+            How Much Does It Cost
+          </p>
+
+          <h1
+            id="pricing-header"
+            className="mt-3 font-semibold text-3xl sm:text-4xl"
+          >
+            So What Does It Cost
+          </h1>
+
+          <h2 className="mt-4 font-medium text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
+            Sure, we are solving you the hassle of tens or hundreds of thousands
+            of dollars and doing it all fast. But don’t worry, we are not
+            overcharging you.
+          </h2>
+        </div>
+
+        {/* Pricing Section */}
+        <div className="flex flex-col lg:flex-row w-full justify-between items-start gap-10 mt-14">
+
+          {/* Left Info */}
+          <div className="flex flex-col justify-center items-center gap-3 text-center max-w-xs mx-auto">
+            <h1 className="font-semibold text-xl sm:text-2xl">
+              Not sure what bundle is best for you?
+            </h1>
+
+            <p className="text-sm text-gray-600">
+              Quit the guesswork — click below to download our guide
+            </p>
+
+            {/* Button */}
+            <button
+              onClick={() => window.open("/assets/WebSB_Guide.pdf", "_blank")}
+              className="bg-[#010101] text-gray-100 py-2 px-4 rounded-xl w-full hover:bg-gray-800 transition"
+            >
+              WebSB Guide
+            </button>
+
+            <h1 className="mt-3 font-medium text-sm">Monthly Order Limit</h1>
+            <p className="font-light text-sm">Unlimited affiliated</p>
+          </div>
+
+          {/* Cards Section */}
+          <div className="flex flex-wrap justify-center lg:justify-start gap-6">
+            {Array.isArray(data) && data.length > 0 ? (
+              data.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                >
+                  <Card
+                    title={item.title}
+                    num={item.num}
+                    price={item.num1}
+                    num2={item.num2}
+                    num3={item.num3}
+                  />
+                </motion.div>
+              ))
+            ) : (
+              <p className="text-gray-500 text-sm text-center">
+                No pricing data available.
+              </p>
+            )}
+          </div>
+        </div>
+
+        <Footer title="We Build Anything, You Want" title1="Buy Now" />
       </div>
-      {data.map((item, index) => (
-  <Card className='' key={index} title={item.title} num={item.num} num1={item.num1} num2={item.num2} num3={item.num3} />
-))}
-</div>
-  </div>
-  <Footer title={'We Build Anything ,You Want'} title1={'Buy Now'}/>
-  </>
-  )
+    </>
+  );
 }
 
-export default Pricing
+export default Pricing;

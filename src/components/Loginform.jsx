@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { Api } from "../stores/ContextApi";
 import api from "../utills/api";
 
-
 function Loginform() {
   const { setIsLogin, handleSignLogToggle } = useContext(Api);
   const navigate = useNavigate();
@@ -12,8 +11,6 @@ function Loginform() {
 
   const [formData, setFormdata] = useState({ email: "", password: "" });
 
-
-  
   // Handle input change
   function handlechange(event) {
     const { name, type, value, checked } = event.target;
@@ -34,10 +31,8 @@ function Loginform() {
         toast.error("Invalid email format!");
         return;
       }
-console.log(formData);
 
-      // Call backend login API
-      const res = await api.post("/user/login", formData);
+      const res = await api.post("user/login", formData);
       const token = res.data?.token;
 
       if (!token) {
@@ -45,12 +40,10 @@ console.log(formData);
         return;
       }
 
-      // Save token in localStorage
       localStorage.setItem("token", token);
 
       toast.success("Login successful!");
       setIsLogin(true);
-
       navigate("/"); // redirect home
     } catch (err) {
       console.error(err.response?.data || err.message);
@@ -59,10 +52,10 @@ console.log(formData);
   };
 
   return (
-    <div className="w-2xs">
+    <div className="w-full max-w-sm sm:max-w-md mx-auto px-4">
       <form
         onSubmit={submitHandler}
-        className="space-y-5 w-full max-w-md mx-auto"
+        className="flex flex-col space-y-5 w-full"
       >
         {/* Email */}
         <label className="block">
@@ -105,20 +98,20 @@ console.log(formData);
         </label>
 
         {/* Forgot Password + Signup */}
-        <div className="flex justify-between items-center">
-          <div className="text-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0 text-sm">
+          <div>
             New User?{" "}
             <Link
               to="/signup"
               onClick={handleSignLogToggle}
-              className="text-sm text-blue-500 hover:underline"
+              className="text-blue-500 hover:underline"
             >
               SignUp
             </Link>
           </div>
           <Link
             to="/forget-password"
-            className="text-sm text-blue-500 hover:underline"
+            className="text-blue-500 hover:underline"
           >
             Forgot Password?
           </Link>
