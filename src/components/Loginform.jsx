@@ -34,7 +34,7 @@ function Loginform() {
 
       const res = await api.post("user/login", formData);
       const token = res.data?.token;
-
+ localStorage.setItem('token',token);
       if (!token) {
         toast.error("No token received!");
         return;

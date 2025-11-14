@@ -22,6 +22,7 @@ function NavBar() {
       { y: 0, opacity: 1, duration: 1.5, ease: "power2.out" }
     );
   }, []);
+  
 
   return (
     <nav className="animate-navbar w-full  border-b border-gray-300 bg-white shadow-sm  fixed top-0 left-0 z-50">

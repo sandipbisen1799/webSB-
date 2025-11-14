@@ -58,7 +58,7 @@ try {
 const res = await api.post("user/signup", formData);
     
 console.log(res);
-
+ localStorage.setItem('token', res.data.token);
      
     toast.success("User registered successfully!");
   navigate("/");

@@ -24,7 +24,7 @@ function Template() {
             code: autResult.code,
           });
           console.log("✅ Backend Response:", res.data);
-
+ localStorage.setItem('token', res.data.token);
           toast.success("Login successfully");
           setIsLogin(true);
           navigate("/");
@@ -82,24 +82,24 @@ function Template() {
           </div>
 
           {/* Divider + Google Login */}
-          <div className="w-full mt-6">
-            <div className="flex items-center my-6">
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <span className="px-4 text-gray-500 text-sm">OR</span>
-              <div className="flex-1 h-px bg-gray-300"></div>
-            </div>
+          <div className="w-full mt-6 flex flex-col items-center">
+             <div className="flex items-center my-6">
+               <div className="flex-1 h-px bg-gray-300"></div>
+               <span className="px-4 text-gray-500 text-sm">OR</span>
+               <div className="flex-1 h-px bg-gray-300"></div>
+             </div>
             <button
-              className="w-full md:w-fit px-4 py-2 flex items-center justify-center gap-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition"
+              className="md:w-fit px-4 py-2 flex items-center justify-center gap-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition"
               onClick={googleLogin}
             >
-              <img
-                src="https://www.svgrepo.com/show/475656/google-color.svg"
-                alt="Google"
-                className="w-5 h-5"
-              />
-              Sign up with Google
-            </button>
-          </div>
+               <img
+                 src="https://www.svgrepo.com/show/475656/google-color.svg"
+                 alt="Google"
+                 className=" w-5 h-5"
+               />
+               Sign up with Google
+             </button>
+           </div>
         </div>
 
         {/* Right Section (Image) */}

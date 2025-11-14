@@ -23,19 +23,39 @@ export function ApiProvider({ children }) {
   const VITE_API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api/v1";
 
   // 🔹 Check login status
-  const checkAuth = async () => {
+const checkAuth = async () => {
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setIsLogin(false);
+        setAuthUser(null);
+        return;
+      }
       const res = await api.get(`user/auth`, {
-        withCredentials: true, // ✅ this sends the cookie
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-
       console.log("✅ Auth check success:", res.data);
       setAuthUser(res.data.user);
+      setIsLogin(true); // Set isLogin to true on successful auth
     } catch (err) {
       console.error("❌ Auth check failed:", err);
       setAuthUser(null);
+      setIsLogin(false); // Ensure isLogin is false on failure
     }
   };
+  const logoutHandler = async () => {
+  try {
+    await api.post("user/logout");
+  } catch (err) {
+    console.error("Logout failed:", err);
+  }
+  setIsLogin(false);
+  setAuthUser(null);
+  localStorage.removeItem("token");
+};
+ 
 useEffect(() => {
     checkAuth();
 }, []);
@@ -48,9 +68,7 @@ useEffect(() => {
     setSignUpLoginToggle(true)
   }
 
-  const logoutHandler = () => {
-    setIsLogin(false);
-  };
+  
   const data= [
 
 {
